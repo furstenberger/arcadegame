@@ -58,7 +58,10 @@ Player.prototype.render = function () {
 // Draw the enemy on the screen, required method for game
 Player.prototype.handleInput = function (key) {
     
-    console.log(key);
+    let xPos = this.x;
+    let yPos = this.y;
+    
+
     switch (key) {
         case 'up': 
             this.y -= 101;
@@ -67,12 +70,15 @@ Player.prototype.handleInput = function (key) {
             this.y += 101;
             break;
         case 'left':
-            let xPos = this.x
             xPos -= 101;
-            if (xPos <= 0) { this.x = 0 } else { this.x -= xPos};
+            console.log(xPos);
+            if (xPos <= 0) { this.x = 0 } else { this.x = xPos};
             break;
         case 'right':
-            this.x += 101;
+            
+            xPos += 101;
+            console.log(xPos);
+            if (xPos >= 404) { this.x = 404 } else { this.x = xPos };
             break;
         default:
             break;
