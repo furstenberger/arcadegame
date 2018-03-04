@@ -34,7 +34,7 @@ let Player = function(row) {
     this.sprite = 'images/char-boy.png';
 
     // The initial position of our player
-    this.x = 0;
+    this.x = 202;
     this.y = row; // initiate enemy in the proper row
 
 }
@@ -56,8 +56,27 @@ Player.prototype.render = function () {
 };
 
 // Draw the enemy on the screen, required method for game
-Player.prototype.handleInput = function () {
+Player.prototype.handleInput = function (key) {
     
+    console.log(key);
+    switch (key) {
+        case 'up': 
+            this.y -= 101;
+            break;
+        case 'down':
+            this.y += 101;
+            break;
+        case 'left':
+            let xPos = this.x
+            xPos -= 101;
+            if (xPos <= 0) { this.x = 0 } else { this.x -= xPos};
+            break;
+        case 'right':
+            this.x += 101;
+            break;
+        default:
+            break;
+    }
 };
 
 
@@ -67,7 +86,7 @@ Player.prototype.handleInput = function () {
 // Place the player object in a variable called player
 let allEnemies = [];
 
-let numEnemies = 3; // define how many enemies we nat in the game
+let numEnemies = 3; // define how many enemies we want in the game
 
 for ( i = 0 ;i < numEnemies ; i++) {
 
@@ -76,7 +95,7 @@ for ( i = 0 ;i < numEnemies ; i++) {
 
 };
 
-let player = new Player(303);
+let player = new Player(404);
 
 
 // This listens for key presses and sends the keys to your
