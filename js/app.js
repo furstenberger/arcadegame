@@ -60,25 +60,35 @@ Player.prototype.handleInput = function (key) {
     
     let xPos = this.x;
     let yPos = this.y;
-    
+
+    let xStep = 101; // number of pixels in the canvas let the player in the middle of the blocks in x axis
+    let yStep = 83;  // number of pixels in the canvas let the player in the middle of the blocks in y axis
+
+    let minX = 0;    // minimum player position in the canvas - x axis
+    let maxX = 404;  // maximum player position in the canvas - x axis
+
+    let minY = -11;    // minimum player position in the canvas - y axis 
+    let maxY = 404;  // maximum player position in the canvas - y axis
 
     switch (key) {
-        case 'up': 
-            this.y -= 101;
+        case 'up':
+            console.log(yPos); 
+            yPos -= yStep;
+            console.log(yPos);
+            if (yPos <= minY) { this.y = minY } else { this.y = yPos }; // test if player goes out of bounds
             break;
         case 'down':
-            this.y += 101;
+            yPos += yStep;
+            console.log(yPos);
+            if (yPos >= maxY) { this.y = maxY } else { this.y = yPos }; // test if player goes out of bounds
             break;
         case 'left':
-            xPos -= 101;
-            console.log(xPos);
-            if (xPos <= 0) { this.x = 0 } else { this.x = xPos};
+            xPos -= xStep;
+            if (xPos <= minX) { this.x = minX } else { this.x = xPos}; // test if player goes out of bounds
             break;
-        case 'right':
-            
-            xPos += 101;
-            console.log(xPos);
-            if (xPos >= 404) { this.x = 404 } else { this.x = xPos };
+        case 'right':           
+            xPos += xStep;
+            if (xPos >= maxX) { this.x = maxX } else { this.x = xPos }; // test if player goes out of bounds
             break;
         default:
             break;
@@ -94,7 +104,7 @@ let allEnemies = [];
 
 let numEnemies = 3; // define how many enemies we want in the game
 
-for ( i = 0 ;i < numEnemies ; i++) {
+for ( i = 0 ; i < numEnemies ; i++) {
 
     let aEnemy = new Enemy(101*i);
     allEnemies.push(aEnemy);
