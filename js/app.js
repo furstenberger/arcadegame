@@ -27,10 +27,39 @@ Enemy.prototype.render = function() {
 };
 
 // Now write your own player class
+let Player = function(row) {
 
+    // The image/sprite for our player, this uses
+    // a helper we've provided to easily load images
+    this.sprite = 'images/char-boy.png';
+
+    // The initial position of our player
+    this.x = 0;
+    this.y = row; // initiate enemy in the proper row
+
+}
 
 // This class requires an update(), render() and
 // a handleInput() method.
+
+// Update the enemy's position, required method for game
+// Parameter: dt, a time delta between ticks
+Player.prototype.update = function (dt) {
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+};
+
+// Draw the enemy on the screen, required method for game
+Player.prototype.render = function () {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+};
+
+// Draw the enemy on the screen, required method for game
+Player.prototype.handleInput = function () {
+    
+};
+
 
 
 // Now instantiate your objects.
@@ -46,6 +75,8 @@ for ( i = 0 ;i < numEnemies ; i++) {
     allEnemies.push(aEnemy);
 
 };
+
+let player = new Player(303);
 
 
 // This listens for key presses and sends the keys to your
