@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(row) {
+var Enemy = function(row, defaultSpeed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -10,6 +10,7 @@ var Enemy = function(row) {
     // The initial position of our enemies
     this.x = 0;
     this.y = row; // initiate enemy in the proper row
+    this.speed = defaultSpeed; // set a default speed for the enemy
 
 };
 
@@ -19,6 +20,8 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += (dt + this.speed);
+
 };
 
 // Draw the enemy on the screen, required method for game
@@ -67,7 +70,7 @@ Player.prototype.handleInput = function (key) {
     let minX = 0;    // minimum player position in the canvas - x axis
     let maxX = 404;  // maximum player position in the canvas - x axis
 
-    let minY = -11;    // minimum player position in the canvas - y axis 
+    let minY = -11;  // minimum player position in the canvas - y axis 
     let maxY = 404;  // maximum player position in the canvas - y axis
 
     switch (key) {
@@ -103,15 +106,18 @@ Player.prototype.handleInput = function (key) {
 let allEnemies = [];
 
 let numEnemies = 3; // define how many enemies we want in the game
+let speed1 = 2;     // define speed as 1 pixel per update 
 
 for ( i = 0 ; i < numEnemies ; i++) {
 
-    let aEnemy = new Enemy(101*i);
+    let initialYPosition = 238 - i*83;
+
+    let aEnemy = new Enemy(initialYPosition, speed1);
     allEnemies.push(aEnemy);
 
 };
 
-let player = new Player(404);
+let player = new Player(404); // 404 is the player y initial position on the canvas
 
 
 // This listens for key presses and sends the keys to your
