@@ -79,7 +79,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function and loops through all of the
@@ -94,6 +94,27 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    /* This is called by the update function and loops through all of the
+     * objects within your allEnemies array as defined in app.js and check
+     * their positions relative to the player's within the canvas. If they
+     * have the same y axis value along with less then 60 pixels apart in
+     * x axis, it will recognize as a hit and the game will restart
+     */
+    function checkCollisions() {
+        allEnemies.forEach(function (enemy) {
+            // calculate if player and enemy distance is less than 60 pixels
+            let deltaX = Math.abs(enemy.x - player.x);
+
+            // test y axis position from both players and enemies are equal
+            // and test if their x axis distance is less than 60. If both conditions
+            // apply, then identify as a hit
+            if (enemy.y === player.y && deltaX <= 60) {
+                console.log('we have a collision');
+            }
+        });
+
     }
 
     /* This function initially draws the "game level", it will then call

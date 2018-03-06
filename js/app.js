@@ -7,8 +7,8 @@ var Enemy = function(row, defaultSpeed) {
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
     
-    this.minX = -150;    // minimum player position in the canvas - x axis
-    this.maxX = 554;     // maximum player position in the canvas - x axis
+    this.minX = -150;    // minimum enemy position in the canvas - x axis
+    this.maxX = 554;     // maximum enemy position in the canvas - x axis
 
     // The initial position of our enemies
     this.x = this.minX = -150;
@@ -104,8 +104,6 @@ Player.prototype.handleInput = function (key) {
     }
 };
 
-
-
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
@@ -114,6 +112,7 @@ let allEnemies = [];
 let numEnemies = 3; // define how many enemies we want in the game
 let speed1 = 2;     // define speed as 1 pixel per update 
 
+// Create enemies objects
 for ( i = 0 ; i < numEnemies ; i++) {
 
     let initialYPosition = 238 - i*83;
@@ -123,7 +122,7 @@ for ( i = 0 ; i < numEnemies ; i++) {
 
 };
 
-
+// Create player object
 let player = new Player(); // 404 is the player y initial position on the canvas
 
 
