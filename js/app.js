@@ -1,15 +1,3 @@
-
-// Players and enemies boundaries
-
-let minX = 0;    // minimum player position in the canvas - x axis
-let maxX = 404;  // maximum player position in the canvas - x axis
-
-let minY = -11;  // minimum player position in the canvas - y axis 
-let maxY = 404;  // maximum player position in the canvas - y axis
-
-let centerX = 202; // center position in canvas - x axis
-
-
 // Enemies our player must avoid
 var Enemy = function(row, defaultSpeed) {
     // Variables applied to each of our instances go here,
@@ -18,9 +6,12 @@ var Enemy = function(row, defaultSpeed) {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
+    
+    this.minX = -150;    // minimum player position in the canvas - x axis
+    this.maxX = 554;     // maximum player position in the canvas - x axis
 
     // The initial position of our enemies
-    this.x = minX;
+    this.x = this.minX = -150;
     this.y = row; // initiate enemy in the proper row
     this.speed = defaultSpeed; // set a default speed for the enemy
 
@@ -35,7 +26,7 @@ Enemy.prototype.update = function(dt) {
     this.x += (dt + this.speed);
 
     // reset enemy position after it hits maximum canvas size 
-    if (this.x >= maxX) { this.x = minX }
+    if (this.x >= this.maxX) { this.x = this.minX }
 
 };
 
@@ -51,9 +42,15 @@ let Player = function(row) {
     // a helper we've provided to easily load images
     this.sprite = 'images/char-boy.png';
 
+    this.minX = 0;    // minimum player position in the canvas - x axis
+    this.maxX = 404;  // maximum player position in the canvas - x axis
+
+    this.minY = -11;  // minimum player position in the canvas - y axis 
+    this.maxY = 404;  // maximum player position in the canvas - y axis
+
     // The initial position of our player
-    this.x = centerX;
-    this.y = row; // initiate enemy in the proper row
+    this.x = 202;
+    this.y = this.maxY; // initiate enemy in the proper row
 
 }
 
@@ -87,20 +84,20 @@ Player.prototype.handleInput = function (key) {
             console.log(yPos); 
             yPos -= yStep;
             console.log(yPos);
-            if (yPos <= minY) { this.y = minY } else { this.y = yPos }; // test if player goes out of bounds
+            if (yPos <= this.minY) { this.y = this.minY } else { this.y = yPos }; // test if player goes out of bounds
             break;
         case 'down':
             yPos += yStep;
             console.log(yPos);
-            if (yPos >= maxY) { this.y = maxY } else { this.y = yPos }; // test if player goes out of bounds
+            if (yPos >= this.maxY) { this.y = this.maxY } else { this.y = yPos }; // test if player goes out of bounds
             break;
         case 'left':
             xPos -= xStep;
-            if (xPos <= minX) { this.x = minX } else { this.x = xPos}; // test if player goes out of bounds
+            if (xPos <= this.minX) { this.x = this.minX } else { this.x = xPos}; // test if player goes out of bounds
             break;
         case 'right':           
             xPos += xStep;
-            if (xPos >= maxX) { this.x = maxX } else { this.x = xPos }; // test if player goes out of bounds
+            if (xPos >= this.maxX) { this.x = this.maxX } else { this.x = xPos }; // test if player goes out of bounds
             break;
         default:
             break;
@@ -126,7 +123,8 @@ for ( i = 0 ; i < numEnemies ; i++) {
 
 };
 
-let player = new Player(404); // 404 is the player y initial position on the canvas
+
+let player = new Player(); // 404 is the player y initial position on the canvas
 
 
 // This listens for key presses and sends the keys to your
