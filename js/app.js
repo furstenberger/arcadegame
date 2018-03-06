@@ -1,3 +1,15 @@
+
+// Players and enemies boundaries
+
+let minX = 0;    // minimum player position in the canvas - x axis
+let maxX = 404;  // maximum player position in the canvas - x axis
+
+let minY = -11;  // minimum player position in the canvas - y axis 
+let maxY = 404;  // maximum player position in the canvas - y axis
+
+let centerX = 202; // center position in canvas - x axis
+
+
 // Enemies our player must avoid
 var Enemy = function(row, defaultSpeed) {
     // Variables applied to each of our instances go here,
@@ -8,7 +20,7 @@ var Enemy = function(row, defaultSpeed) {
     this.sprite = 'images/enemy-bug.png';
 
     // The initial position of our enemies
-    this.x = 0;
+    this.x = minX;
     this.y = row; // initiate enemy in the proper row
     this.speed = defaultSpeed; // set a default speed for the enemy
 
@@ -21,6 +33,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     this.x += (dt + this.speed);
+
+    // reset enemy position after it hits maximum canvas size 
+    if (this.x >= maxX) { this.x = minX }
 
 };
 
@@ -37,7 +52,7 @@ let Player = function(row) {
     this.sprite = 'images/char-boy.png';
 
     // The initial position of our player
-    this.x = 202;
+    this.x = centerX;
     this.y = row; // initiate enemy in the proper row
 
 }
@@ -66,12 +81,6 @@ Player.prototype.handleInput = function (key) {
 
     let xStep = 101; // number of pixels in the canvas let the player in the middle of the blocks in x axis
     let yStep = 83;  // number of pixels in the canvas let the player in the middle of the blocks in y axis
-
-    let minX = 0;    // minimum player position in the canvas - x axis
-    let maxX = 404;  // maximum player position in the canvas - x axis
-
-    let minY = -11;  // minimum player position in the canvas - y axis 
-    let maxY = 404;  // maximum player position in the canvas - y axis
 
     switch (key) {
         case 'up':
