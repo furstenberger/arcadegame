@@ -59,7 +59,7 @@ let Player = function(row) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-Player.prototype.update = function (dt) {
+Player.prototype.update = function () {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -68,6 +68,10 @@ Player.prototype.update = function (dt) {
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    if (player.y === player.minY) {
+        alert("Congratulations! You Win! Click OK to play again!");
+        reset();
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -80,15 +84,12 @@ Player.prototype.handleInput = function (key) {
     let yStep = 83;  // number of pixels in the canvas let the player in the middle of the blocks in y axis
 
     switch (key) {
-        case 'up':
-            console.log(yPos); 
+        case 'up': 
             yPos -= yStep;
-            console.log(yPos);
             if (yPos <= this.minY) { this.y = this.minY } else { this.y = yPos }; // test if player goes out of bounds
             break;
         case 'down':
             yPos += yStep;
-            console.log(yPos);
             if (yPos >= this.maxY) { this.y = this.maxY } else { this.y = yPos }; // test if player goes out of bounds
             break;
         case 'left':
