@@ -110,14 +110,14 @@ Player.prototype.handleInput = function (key) {
 let allEnemies = [];
 
 let numEnemies = 3; // define how many enemies we want in the game
-let speed1 = 2;     // define speed as 1 pixel per update 
+let speedArray = [4,5,7];     // define speed for each enemy pixel per update 
 
 // Create enemies objects
 for ( i = 0 ; i < numEnemies ; i++) {
 
     let initialYPosition = 238 - i*83;
 
-    let aEnemy = new Enemy(initialYPosition, speed1);
+    let aEnemy = new Enemy(initialYPosition, speedArray[i]);
     allEnemies.push(aEnemy);
 
 };
