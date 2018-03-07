@@ -160,6 +160,8 @@ var Engine = (function(global) {
         }
 
         renderEntities();
+        // check if player position is at the end of game, leading to victory
+        checkVictory();
     }
 
     /* This function is called by the render function and is called on each game
@@ -175,6 +177,21 @@ var Engine = (function(global) {
         });
 
         player.render();
+
+    }
+
+    /* This function checks for player position and victory. 
+     * When player wins the game, a popup window shows
+     */
+    function checkVictory(dt) {
+        // check player position
+        if (player.y === player.minY) {
+            // wait 0.1 seconds for screen updating. Otherwise player will not hit the water
+            setTimeout(function () {
+                alert("Congratulations! You Win! Click OK to play again!");
+                reset();
+            }, dt);
+        }
     }
 
     /* This function does nothing but it could have been a good place to

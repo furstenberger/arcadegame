@@ -67,11 +67,7 @@ Player.prototype.update = function () {
 
 // Draw the enemy on the screen, required method for game
 Player.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    if (player.y === player.minY) {
-        alert("Congratulations! You Win! Click OK to play again!");
-        reset();
-    }
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);    
 };
 
 // Draw the enemy on the screen, required method for game
