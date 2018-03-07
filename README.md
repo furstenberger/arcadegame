@@ -1,6 +1,22 @@
-frontend-nanodegree-arcade-game
+# FrontEnd Nanodegree Arcade Game
 ===============================
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) for self-checking their submission. Make sure the functions you write are **object-oriented** - either class functions (like Player and Enemy) or class prototype functions such as Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class and class prototype functions to refer to the object the function is called upon. Also be sure that the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade game.
+## Game Rules
 
-For detailed instructions on how to get started, check out this [guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+* Player must avoid bugs at all costs
+* If player gets hit, the game resets to initial state
+* If player arrives at the water on the top of the screen, a winning message will show up
+* After winning, click ok on the alert box to reset game
+
+## Instructions
+
+* Execute game loading `index.html` on any browser
+
+## Dependencies
+
+* No dependencies reported
+
+As a wise man once said:
+
+> Do not drink and drive, 
+> cross the street looking at both sides.
