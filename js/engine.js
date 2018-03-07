@@ -111,7 +111,7 @@ var Engine = (function(global) {
             // and test if their x axis distance is less than 60. If both conditions
             // apply, then identify as a hit
             if (enemy.y === player.y && deltaX <= 60) {
-                console.log('we have a collision');
+                reset();
             }
         });
 
@@ -182,7 +182,14 @@ var Engine = (function(global) {
      * those sorts of things. It's only called once by the init() method.
      */
     function reset() {
-        // noop
+        // loop through all enemies and reset them to their initial positions
+        allEnemies.forEach(function (enemy) {
+            enemy.x = enemy.minX;
+        });
+
+        // reset player to initial position
+        player.x = 202; 
+        player.y = player.maxY;
     }
 
     /* Go ahead and load all of the images we know we're going to need to
