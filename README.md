@@ -1,5 +1,4 @@
 # FrontEnd Nanodegree Arcade Game
-===============================
 
 ## Game Rules
 
@@ -16,6 +15,7 @@
 
 * No dependencies reported
 
+## Miscelaneous
 As a wise man once said:
 
 > Do not drink and drive, 
